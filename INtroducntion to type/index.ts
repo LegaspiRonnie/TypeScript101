@@ -8,19 +8,18 @@ type Person = {
     name: string;
     age: number;
     isStudent: boolean;
-    address: Address
+    address?: Address
 }
 let person1: Person = {
     name: "Ronnie",
     age: 23,
     isStudent: true,
-    address: {
-        street: "test",
-        city: "poz",
-        country: "Phi"
-         
-    }
+    
 }
 
 console.log(person1)
-console.log(person1.address)
+if (person1.address === undefined) {
+    console.log(`${person1.name} has no given address`)
+} else {
+    console.log(person1.address)
+}
