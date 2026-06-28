@@ -2,11 +2,7 @@ type Pizza = {
     name: string;
     price: number;
 };
-type Order = {
-    id: number;
-    pizza: string;
-    status: string;
-}
+
 type Queue = {
     id: number;
     pizza: string;
@@ -25,7 +21,7 @@ let nextOrderId: number = 1
 let orderQueue: Queue[] = []
 
 
-function addNewPizza(pizzaObj: {name: string, price: number}) {
+function addNewPizza(pizzaObj: Pizza) {
     menu.push(pizzaObj)
 
 }
