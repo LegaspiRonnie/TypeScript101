@@ -1,5 +1,6 @@
+let pizzaId: number = 1;
 type Pizza = {
-    id: number;
+    id: number | null;
     name: string;
     price: number;
 };
@@ -13,18 +14,19 @@ type OrderStatus = "ordered" | "completed"
 
 
 let menu: Pizza[] =  [
-    {id: 1, name: "Margherita", price: 8},
-    {id: 2, name: "Pepperoni", price: 8},
-    {id: 3, name: "Hawaian", price: 8},
-    {id: 4, name: "Veggie", price: 8},
+    {id: pizzaId++, name: "Margherita", price: 8},
+    {id: pizzaId++, name: "Margherita", price: 8},
+    {id: pizzaId++, name: "Margherita", price: 8},
 ]
+
 
 let cashInRegister: number = 100
 let nextOrderId: number = 1
 let orderHistory: Order[] = []
 
 
-function addNewPizza(pizzaObj: Pizza): void {
+function addNewPizza(pizzaObj: Pizza ): void {
+    pizzaObj.id = pizzaId++
     menu.push(pizzaObj)
 
 }
@@ -74,11 +76,15 @@ export function getPizzaDetail(identifier: number | string): Pizza | undefined{
     console.log(pizza)
     return pizza
 }
-getPizzaDetail(1)
+// getPizzaDetail(1)
 
 // getPizzaDetail("sfdfdf")
 
-// addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+
 // addNewPizza({id: 6, name: "Chicken  Ranch", price: 12})
 // addNewPizza({id: 7, name: "Chicken Bacon", price: 12})
 
@@ -87,7 +93,8 @@ getPizzaDetail(1)
 
 // placeOrder("Chicken Bacon")
 // completeOrder(2)
-// console.log(menu);
+console.log(menu);
+
 // console.log(`total cost: ${cashInRegister}`)
 // console.log(orderHistory)
 
