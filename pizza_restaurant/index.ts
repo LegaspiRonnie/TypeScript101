@@ -24,12 +24,12 @@ let nextOrderId: number = 1
 let orderHistory: Order[] = []
 
 
-function addNewPizza(pizzaObj: Pizza) {
+function addNewPizza(pizzaObj: Pizza): void {
     menu.push(pizzaObj)
 
 }
 
-function placeOrder(pizzaName: string) {
+function placeOrder(pizzaName: string): Order | undefined {
     const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
     if (!selectedPizza) {
         console.error(`${pizzaName} is not in the list`)
@@ -52,7 +52,7 @@ function placeOrder(pizzaName: string) {
 
 }
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order | undefined{
     const order = orderHistory.find(order => order.id === orderId)
     if (order == undefined) {
         console.log("Order Undefined")
@@ -62,7 +62,7 @@ function completeOrder(orderId: number) {
     
     return order
 } 
-export function getPizzaDetail(identifier: number | string): Pizza {
+export function getPizzaDetail(identifier: number | string): Pizza | undefined{
     let pizza = 
         typeof identifier === 'string'
             ? menu.find(pizza => pizza.name.toLocaleLowerCase() === identifier.toLowerCase()) 
