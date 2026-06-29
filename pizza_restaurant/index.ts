@@ -62,19 +62,31 @@ function completeOrder(orderId: number) {
     
     return order
 } 
-
-addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12})
-addNewPizza({id: 6, name: "Chicken  Ranch", price: 12})
-addNewPizza({id: 7, name: "Chicken Bacon", price: 12})
-
-placeOrder("Pepperoni")
-completeOrder(1)
-
-placeOrder("Chicken Bacon")
-completeOrder(2)
-console.log(menu);
-console.log(`total cost: ${cashInRegister}`)
-console.log(orderHistory)
+export function getPizzaDetail(identifier: number | string) {
+    if (typeof identifier === "string") {
+        return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase())
+    } else if  (typeof identifier === "number") {
+        return menu.find(pizza => pizza.id === identifier)
+    } else {
+        throw new TypeError("Parameter 'identifier' myst be either a string or a number")
+    }
+}
 
 
-console.log(menu[0])
+// getPizzaDetail("sfdfdf")
+
+// addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12})
+// addNewPizza({id: 6, name: "Chicken  Ranch", price: 12})
+// addNewPizza({id: 7, name: "Chicken Bacon", price: 12})
+
+// placeOrder("Pepperoni")
+// completeOrder(1)
+
+// placeOrder("Chicken Bacon")
+// completeOrder(2)
+// console.log(menu);
+// console.log(`total cost: ${cashInRegister}`)
+// console.log(orderHistory)
+
+
+// console.log(menu[0])
