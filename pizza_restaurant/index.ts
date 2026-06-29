@@ -1,4 +1,5 @@
 type Pizza = {
+    id: number;
     name: string;
     price: number;
 };
@@ -6,16 +7,16 @@ type Pizza = {
 type Order = {
     id: number;
     pizza: Pizza;
-    status: string;
+    status: OrderStatus;
 }
-
+type OrderStatus = "ordered" | "completed"
 
 
 let menu: Pizza[] =  [
-    {name: "Margherita", price: 8},
-    {name: "Pepperoni", price: 8},
-    {name: "Hawaian", price: 8},
-    {name: "Veggie", price: 8},
+    {id: 1, name: "Margherita", price: 8},
+    {id: 2, name: "Pepperoni", price: 8},
+    {id: 3, name: "Hawaian", price: 8},
+    {id: 4, name: "Veggie", price: 8},
 ]
 
 let cashInRegister: number = 100
@@ -39,6 +40,7 @@ function placeOrder(pizzaName: string) {
     const newOrder: Order = {
         id: nextOrderId++,
         pizza: {
+            id: selectedPizza.id,
             name: selectedPizza.name,
             price: selectedPizza.price,
         },
@@ -61,12 +63,18 @@ function completeOrder(orderId: number) {
     return order
 } 
 
-addNewPizza({name: "Chicken Bacon Ranch", price: 12})
-addNewPizza({name: "Chicken  Ranch", price: 12})
-addNewPizza({name: "Chicken Bacon ", price: 12})
+addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12})
+addNewPizza({id: 6, name: "Chicken  Ranch", price: 12})
+addNewPizza({id: 7, name: "Chicken Bacon", price: 12})
 
 placeOrder("Pepperoni")
 completeOrder(1)
+
+placeOrder("Chicken Bacon")
+completeOrder(2)
 console.log(menu);
-console.log(cashInRegister)
+console.log(`total cost: ${cashInRegister}`)
 console.log(orderHistory)
+
+
+console.log(menu[0])
