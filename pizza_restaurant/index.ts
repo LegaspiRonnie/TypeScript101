@@ -62,16 +62,19 @@ function completeOrder(orderId: number) {
     
     return order
 } 
-export function getPizzaDetail(identifier: number | string) {
-    if (typeof identifier === "string") {
-        return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase())
-    } else if  (typeof identifier === "number") {
-        return menu.find(pizza => pizza.id === identifier)
-    } else {
-        throw new TypeError("Parameter 'identifier' myst be either a string or a number")
+export function getPizzaDetail(identifier: number | string): Pizza {
+    let pizza = 
+        typeof identifier === 'string'
+            ? menu.find(pizza => pizza.name.toLocaleLowerCase() === identifier.toLowerCase()) 
+            : menu.find(pizza => pizza.id === identifier);
+    if (!pizza) {
+        throw new Error("Pizza not found")
     }
-}
 
+    console.log(pizza)
+    return pizza
+}
+getPizzaDetail(1)
 
 // getPizzaDetail("sfdfdf")
 
