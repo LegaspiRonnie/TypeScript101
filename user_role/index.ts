@@ -1,21 +1,24 @@
 type UserRole = "guest" | "member" | "admin"
-let userId: number | any = 1
+let nextUserId: number | any = 1
+
+
 type User = {
     id: number
     username: string
     role: UserRole
 }
-
+ 
+type UpdatedUser = Partial<User> 
 const users: User[] = [
-    {id: userId++, username: "John_doe", role: "member"},
-    {id: userId++, username: "admin_john", role: "admin"},
-    {id: userId++, username: "guest_john", role: "guest"},
-    {id: userId++, username: "guest_john", role: "guest"},
-    {id: userId++, username: "guest_john", role: "guest"},
-    {id: userId++, username: "guestxc_john", role: "guest"},
-    {id: userId++, username: "guestcx_john", role: "guest"},
-    {id: userId++, username: "guecxcst_john", role: "guest"},
-    {id: userId++, username: "Ronnie", role: "guest"},
+    {id: nextUserId++, username: "John_doe", role: "member"},
+    {id: nextUserId++, username: "admin_john", role: "admin"},
+    {id: nextUserId++, username: "guest_john", role: "guest"},
+    {id: nextUserId++, username: "guest_john", role: "guest"},
+    {id: nextUserId++, username: "guest_john", role: "guest"},
+    {id: nextUserId++, username: "guestxc_john", role: "guest"},
+    {id: nextUserId++, username: "guestcx_john", role: "guest"},
+    {id: nextUserId++, username: "guecxcst_john", role: "guest"},
+    {id: nextUserId++, username: "Ronnie", role: "guest"},
 ]
 
 function updateUser(id: number, updates: any) {
@@ -27,9 +30,9 @@ function updateUser(id: number, updates: any) {
     Object.assign(user, updates)
 }
 
-updateUser(1, {username: "Ronnie"});
-updateUser(1, {role: "Ronnie"});
-console.log(users)
+// updateUser(1, {username: "Ronnie"});
+// updateUser(1, {role: "Ronnie"});
+// console.log(users)
 // console.log(users)
 
 // export function fetchUserDetail(username: string): User {
@@ -45,3 +48,19 @@ console.log(users)
 //     let user = users.filter(user => user.role === type)
 //     console.log(user)
 // }
+
+function addNewUser(newUser: any): User  {
+    const user: User = {
+        id: nextUserId++,
+        ...newUser
+    }
+    
+    users.push(user)
+    return user
+
+    
+}
+
+
+addNewUser({username: "Ronnie", role: "member"})
+console.log(users)
