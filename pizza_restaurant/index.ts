@@ -25,11 +25,7 @@ let nextOrderId: number = 1
 let orderHistory: Order[] = []
 
 
-function addNewPizza(pizzaObj: Pizza ): void {
-    pizzaObj.id = pizzaId++
-    menu.push(pizzaObj)
 
-}
 
 function placeOrder(pizzaName: string): Order | undefined {
     const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
@@ -80,10 +76,22 @@ export function getPizzaDetail(identifier: number | string): Pizza | undefined{
 
 // getPizzaDetail("sfdfdf")
 
+function addNewPizza(pizzaObj: Omit<Pizza, "id"> ): Pizza {
+    let pizza: Pizza = {
+        id: pizzaId++,
+        ...pizzaObj
+    }
+    
+    menu.push(pizza)
+    return pizza
+
+}
+
 addNewPizza({name: "Chicken Bacon Ranch", price: 12})
 addNewPizza({name: "Chicken Bacon Ranch", price: 12})
 addNewPizza({name: "Chicken Bacon Ranch", price: 12})
 addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+console.log(menu)
 
 // addNewPizza({id: 6, name: "Chicken  Ranch", price: 12})
 // addNewPizza({id: 7, name: "Chicken Bacon", price: 12})
