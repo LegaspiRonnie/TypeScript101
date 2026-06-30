@@ -1,6 +1,6 @@
 let pizzaId: number = 1;
 type Pizza = {
-    id: number | null;
+    id: number;
     name: string;
     price: number;
 };
@@ -14,19 +14,27 @@ type OrderStatus = "ordered" | "completed"
 
 
 let menu: Pizza[] =  [
-    {id: pizzaId++, name: "Margherita", price: 8},
-    {id: pizzaId++, name: "Margherita", price: 8},
-    {id: pizzaId++, name: "Margherita", price: 8},
+    {id: pizzaId++, name: "pizza1", price: 8},
+    {id: pizzaId++, name: "pizza2", price: 8},
+    {id: pizzaId++, name: "pizza3", price: 8},
+    {id: pizzaId++, name: "pizza3", price: 8},
 ]
-
+let orderQueue: Order[] = []
 
 let cashInRegister: number = 100
 let nextOrderId: number = 1
 let orderHistory: Order[] = []
 
+function addToArray<Type>(array: Type[], item: Type): Type[]{
+    array.push(item)
+    return array
+}
 
+addToArray(menu, {id: pizzaId++, name: "Chicken Bacon Ranch", price: 12})
+addToArray<Order>(orderQueue, {id: nextOrderId++, pizza: menu[2]!, status: "completed"})
 
-
+console.log(menu)
+console.log(orderQueue)
 function placeOrder(pizzaName: string): Order | undefined {
     const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
     if (!selectedPizza) {
@@ -87,11 +95,11 @@ function addNewPizza(pizzaObj: Omit<Pizza, "id"> ): Pizza {
 
 }
 
-addNewPizza({name: "Chicken Bacon Ranch", price: 12})
-addNewPizza({name: "Chicken Bacon Ranch", price: 12})
-addNewPizza({name: "Chicken Bacon Ranch", price: 12})
-addNewPizza({name: "Chicken Bacon Ranch", price: 12})
-console.log(menu)
+// addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+// addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+// addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+// addNewPizza({name: "Chicken Bacon Ranch", price: 12})
+// console.log(menu)
 
 // addNewPizza({id: 6, name: "Chicken  Ranch", price: 12})
 // addNewPizza({id: 7, name: "Chicken Bacon", price: 12})
@@ -101,7 +109,7 @@ console.log(menu)
 
 // placeOrder("Chicken Bacon")
 // completeOrder(2)
-console.log(menu);
+// console.log(menu);
 
 // console.log(`total cost: ${cashInRegister}`)
 // console.log(orderHistory)
